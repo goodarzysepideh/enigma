@@ -1,5 +1,5 @@
 # Enigma
-HackCU V (2019) team project.
+## HackCU V (2019) team project.
 
 Team Members:
 
