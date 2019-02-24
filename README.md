@@ -3,12 +3,6 @@
 
 Team Members:
 
-1- Ghazaleh Kazeminejad
+Ghazaleh Kazeminejad, Mahshab Tajik, Sepideh Goodarzy, Maziyar Nazari
 
-2- Mahshab Tajik
-
-3- Sepideh Goodarzy
-
-4- Maziyar Nazari
-
-check!
+We designed and developed a Mystery Game for K-12 Cybersecurity Education.
