@@ -83,24 +83,18 @@
 <div>
     <img src="../static/firstPage.jpg" class="center"></img>
 </div>
-    <input id="text_input" type="text"/>
+    <!--<input id="text_input" type="text"/>-->
     <button id="next_button">Next</button>
     <button id="hint_button">hint</button>
     <div id="res">Key: No beginning! No ending!</div>
     <script>
       $('#hint_button').click(function(){
-        alert("Search how to view page source in you browser!");
+        alert("Just go forward!");
       });
       $('#next_button').click(function(){
-        $.post("page1",
-        {
-          result: $('#text_input').val()
-        })
-        .done(function(data){
-            window.location.replace(data);
-        })
-        .fail(function(data){
-            alert("Let's try again!");
+        $('.center').fadeOut(500, function() {
+          $('.center').attr("src","../static/house2.jpg");
+          $('.center').fadeIn(500);
         });
       });
     </script>

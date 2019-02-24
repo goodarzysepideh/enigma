@@ -9,7 +9,11 @@ def first_page():
 
 @app.route('/page2')
 def retrun_page2():
-    return render_template('page2.html', error=error)
+    return render_template('page2.html')
+
+@app.route('/page3')
+def retrun_page3():
+    return render_template('page3.html')    
 
 @app.route('/page1', methods=['POST'])
 def mpars():
