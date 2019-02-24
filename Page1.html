@@ -2,16 +2,17 @@
 <!doctype html>
 <html>
 <head>
-    <title>Enigma</title>
+    <title>Example Domain</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="jquery-3.3.1.min.js"></script>
     <style>
     @font-face {
       font-family: 'digital';
-      src: url('../static/digital-7.ttf');
+      src: url('digital-7.ttf');
     }
     .center {
       display: block;
@@ -77,30 +78,12 @@
     #res{
       display: none;
     }
-    .container {
-  position: relative;
-  text-align: center;
-  color: white;
-}
-
-.top-center {
-  position: absolute;
-  top: 5%;
-  right: 45%;
-  font-family: Courier;
-  font-size: 26px;
-  text-align: center;
-}
     </style>
 </head>
 <body>
-  <div class="container">
-    <img src="../static/firstPage.jpg" class="center" style="width:100%;" alt="old house"></img>
-    <div class="top-center" style="color: white;">
-      Hunter family have been <span style="color: red;"><b>disappeared</b></span> for 3 years. <br> Nobody knows where they are. <br>
-      Whoever has looked for them has disappeared too, <br> because they couldn’t solve the <span style="font-family: digital; font-size: 36px;">enigma</span>.
-    </div>
-  </div>
+<div>
+    <img src="firstPage.jpg" class="center"></img>
+</div>
     <input id="text_input" type="text"/>
     <button id="next_button">Next</button>
     <button id="hint_button">hint</button>
@@ -110,15 +93,18 @@
         alert("Search how to view page source in you browser!");
       });
       $('#next_button').click(function(){
-        $.post("page1",
+        $.post("localhost:5000/page1",
         {
-          result: $('#text_input').val()
-        })
-        .done(function(data){
+          result: $('#text_input').html()
+        },
+        function(data, status){
+          if (status == 'success') {
             window.location.replace(data);
-        })
-        .fail(function(data){
-            alert("Let's try again!");
+          }
+          else{
+            alert("try again!");
+          }
+          alert("Data: " + data + "\nStatus: " + status);
         });
       });
     </script>
