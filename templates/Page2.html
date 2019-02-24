@@ -7,8 +7,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <script src="jquery-3.3.1.min.js"></script>
+    <script src="static/jquery-3.3.1.min.js"></script>
     <style>
     @font-face {
       font-family: 'digital';
@@ -19,7 +18,7 @@
       margin-left: auto;
       margin-right: auto;
       width: 100%;
-      height: max-content;
+      height: 660px;
       /* height: 100%; */
     }
 
@@ -89,11 +88,12 @@
 
 .top-center {
   position: absolute;
-  top: 1%;
-  right: 2%;
+  top: -5%;
+  right: 0%;
   font-family: Courier;
   font-size: 26px;
   text-align: center;
+  display: none;
 }
 
 .grandpa {
@@ -118,11 +118,12 @@
 
 .top-left {
   position: absolute;
-  top: 15%;
+  top: 24%;
   right: 50%;
   font-family: Courier;
   font-size: 26px;
   text-align: center;
+  display: none;
 }
 
 .mom {
@@ -138,11 +139,12 @@
 .middle-right {
   position: absolute;
   top: 35%;
-  right: 30%;
+  right: 22%;
   /* left: 50%; */
   font-family: Courier;
   font-size: 26px;
   text-align: center;
+  display: none;
 }
 
     </style>
@@ -178,28 +180,24 @@
   </div>
 
 </div>
-    <input id="text_input" type="text"/>
+    <!--<input id="text_input" type="text"/>-->
     <button id="next_button">Next</button>
     <button id="hint_button">hint</button>
     <div id="res">Key: No beginning! No ending!</div>
     <script>
+      $(document).ready(function(){
+          $(".top-center").delay(0).fadeIn("slow");
+          $(".top-center").delay(2500).fadeOut("slow");
+          $(".top-left").delay(5000).fadeIn("slow");
+          $(".top-left").delay(7500).fadeOut("slow");
+          $(".middle-right").delay(14000).fadeIn("slow");
+          $(".middle-right").delay(16500).fadeOut("slow");
+      });
       $('#hint_button').click(function(){
-        alert("Search how to view page source in you browser!");
+        alert("Just go forward!");
       });
       $('#next_button').click(function(){
-        $.post("localhost:5000/page1",
-        {
-          result: $('#text_input').html()
-        },
-        function(data, status){
-          if (status == 'success') {
-            window.location.replace(data);
-          }
-          else{
-            alert("try again!");
-          }
-          alert("Data: " + data + "\nStatus: " + status);
-        });
+            window.location.replace("page3");
       });
     </script>
 

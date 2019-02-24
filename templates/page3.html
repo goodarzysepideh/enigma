@@ -77,26 +77,140 @@
     #res{
       display: none;
     }
+
+    #table {
+
+    }
+
+    #hand1 {
+      position: absolute;
+      top:0;
+      width: 20%;
+      right: 50px;
+    }
+
+    #hand2 {
+      position: absolute;
+      top:0;
+      width: 20%;
+      right: 300px;
+      top: 300px;
+    }
+
+    #hand3 {
+      position: absolute;
+      top:0;
+      width: 20%;
+      right: 500px;
+    }
+
+    #hand4 {
+      position: absolute;
+      top:0;
+      width: 20%;
+      right: 700px;
+      top: 300px;
+    }
+
+    #hand5 {
+      position: absolute;
+      top:0;
+      width: 20%;
+      right: 900px;
+    }
+    #story {
+      position: absolute;
+      top:10%;
+      right: 24%;
+      display: none;
+      width: 50%;
+    }
+    .hand {
+      display: none;
+    }
+    .top-center {
+      width: 400px;
+      position: absolute;
+      top: 3%;
+      left: 2%;
+      font-family: Courier;
+      font-size: 26px;
+      text-align: left;
+      z-index: 1;
+    }
     </style>
 </head>
 <body>
-<div>
-    <img src="../static/firstPage.jpg" class="center"></img>
-</div>
+  <div>
+      <img id="table" src="../static/detective.jpg" class="center"></img>
+  </div>
+  <div class="top-center" style="color: white;">
+    3 years after their disappearance, detective Schmidt from Nebraska agreed to work on the case voluntarily, not just because nobody had been able to solve the enigma, but because of the scary accounts told by other detectives.
+  </div>
+  <div>
+      <img id="hand1" class="hand" src="../static/hand.png"></img>
+  </div>
+  <div>
+      <img id="hand2" class="hand" src="../static/hand.png"></img>
+  </div>
+  <div>
+      <img id="hand3" class="hand" src="../static/hand.png"></img>
+  </div>
+  <div>
+      <img id="hand4" class="hand" src="../static/hand.png"></img>
+  </div>
+  <div>
+      <img id="hand4" class="hand" src="../static/hand.png"></img>
+  </div>
+  <div>
+      <img id="hand5" class="hand" src="../static/hand.png"></img>
+  </div>
+  <div>
+      <img id="story" src="../static/burnedPaperCharacters.png"></img>
+  </div>
     <!--<input id="text_input" type="text"/>-->
     <button id="next_button">Next</button>
     <button id="hint_button">hint</button>
-    <div id="res">Key: No beginning! No ending!</div>
+
     <script>
       $('#hint_button').click(function(){
         alert("Just go forward!");
       });
-      $('#next_button').click(function(){
-        $('.center').fadeOut(500, function() {
-          $('.center').attr("src","../static/house2.jpg");
-          $('.center').fadeIn(500);
+      $('.center').fadeOut(25000, function() {
+        $('.center').attr("src","../static/table.jpg");
+        $('.center').fadeIn(2000);
+        $('.hand').fadeIn(2000);
+        $('.top-center').fadeOut(2000, function(){
+          $(this).html("when the detective touches the dining table in the home,he guesses that the patterns of the hands would give him some clues.")
+          $('.top-center').fadeIn();
         });
       });
+      $('#next_button').click(function(){
+          for (var i =0; i < 5; i++){
+            $('.hand').animate({
+              'right' : "-=10px" //moves left
+            });
+          }
+          for (var i =0; i < 5; i++){
+            $('.hand').animate({
+              'top' : "-=10px" //moves left
+            });
+          }
+          for (var i =0; i < 5; i++){
+            $('.hand').animate({
+              'right' : "+=10px" //moves left
+            });
+          }
+          for (var i =0; i < 5; i++){
+            $('.hand').animate({
+              'top' : "+=10px" //moves left
+            });
+          }
+          $('.hand').fadeOut(5000);
+          $('#story').delay(13000).fadeIn(5000);
+          setTimeout(function(){window.location.replace("page4");},17000);
+          ;
+		  });
     </script>
 
 </body>

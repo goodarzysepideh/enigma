@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Enigma</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="../static/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <style>
+    @font-face {
+      font-family: 'digital';
+      src: url('../static/digital-7.ttf');
+    }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      height: 660px;
+    }
+
+    body {
+        background-color: #f0f0f2;
+        margin: 0;
+        padding: 0;
+    }
+
+    #text_input{
+      position:absolute;
+      bottom:20px;
+      left:20px;
+      line-height: 25px;
+      width:200px;
+      border-radius: 10px;
+      background-color: black;
+      color: green;
+      font-size: 18px;
+      font-family: 'digital';
+      border:none;
+      padding-left: 5px;
+    }
+
+    #next_button{
+      position:absolute;
+      bottom:20px;
+      left:260px;
+      line-height: 25px;
+      border-radius: 10px;
+      width:50px;
+      background-color: green;
+      color:white;
+      font-weight: bolder;
+      width: 70px;
+      font-size: 18px;
+      border:none;
+
+    }
+
+    #hint_button{
+      position:absolute;
+      bottom:20px;
+      left:360px;
+      line-height: 25px;
+      border-radius: 10px;
+      width:50px;
+      background-color: yellow;
+      color: blue;
+      font-weight: bolder;
+      width: 70px;
+      font-size: 18px;
+      border:none;
+
+    }
+
+    #res{
+      display: none;
+    }
+    .container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.top-center {
+  width: 370px;
+  color:black;
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  font-family: Courier;
+  font-size: 26px;
+  text-align: left;
+  z-index: 1;
+}
+
+#dialog {
+  display: none;
+}
+    </style>
+</head>
+<body>
+  <!-- Modal HTML embedded directly into document -->
+  <div id="ex1" class="modal">
+    <p>Old Notebook!</p>
+    <img src="../static/notebook.png" alt="Placeholder Image" style="width:100%;"/>
+  </div>
+
+  <div class="container">
+    <img src="../static/door_a.png" class="center" style="width:100%;" alt="old house"></img>
+    <div class="top-center">
+      Suddenly, detective notices the door to room A
+    </div>
+  </div>
+
+    <input id="text_input" type="text"/>
+    <button id="next_button">Next</button>
+    <button id="hint_button"><a href="#ex1" rel="modal:open">hint</a></button>
+    <script>
+    $('.center').fadeOut(5000, function() {
+      $('.center').attr("src","../static/roomA.jpg");
+      $('.center').fadeIn(5000);
+      $('.top-center').fadeOut(2000, function(){
+        $(this).html("Grandpa’s room. There is an old dusty notebook by the table.")
+        $('.top-center').fadeIn();
+      });
+    });
+      $('#next_button').click(function(){
+        $.post("page4p1",
+        {
+          result: $('#text_input').val()
+        })
+        .done(function(data){
+            alert("We’re lost. Let the room change so you can solve its riddle. Just so you know, a lot of rooms are lost at this house.");
+            window.location.replace(data);
+        })
+        .fail(function(data){
+            alert("Let's try again!");
+        });
+      });
+    </script>
+
+</body>
+</html>
