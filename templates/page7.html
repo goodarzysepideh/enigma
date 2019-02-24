@@ -8,6 +8,8 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="../static/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <style>
     @font-face {
       font-family: 'digital';
@@ -77,50 +79,74 @@
     #res{
       display: none;
     }
-  .container {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
+    .container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
 
 .top-center {
+  width: 500px;
+  color: yellow;
   position: absolute;
-  top: 5%;
-  left: 3%;
+  top: 3%;
+  left: 2%;
   font-family: Courier;
   font-size: 26px;
-  text-align: center;
-  width: 500px;
+  text-align: justify;
+  z-index: 1;
+}
+
+#dialog {
+  display: none;
 }
     </style>
 </head>
 <body>
+  <!-- Modal HTML embedded directly into document -->
+  <!-- <div id="ex1" class="modal">
+    <p>Old Notebook!</p>
+    <img src="../static/notebook.png" alt="Placeholder Image" style="width:100%;"/>
+  </div> -->
+
   <div class="container">
-    <img src="../static/firstPage.jpg" class="center" style="width:100%;" alt="old house"></img>
-    <div class="top-center" style="color: white;">
-      Hunter family have been <span style="color: red;"><b>disappeared</b></span> for 3 years. <br> Nobody knows where they are. <br>
-      Whoever has looked for them has disappeared too, <br> because they couldn’t solve the <span style="font-family: digital; font-size: 36px;">enigma</span>.
+    <img src="../static/roomB.jpg" class="center" style="width:100%;" alt="old house"></img>
+    <div class="top-center"><b>Parents’ room</b>
+        <br/><b>Everything is so tidy. It’s the parents’ room. It seems that they’ve been here a short while ago. There are three different chairs in the room: blue, yellow, and green. ‘They don’t fit the room’, the detective thought. He sits on each of the chairs. Nothing happens. He knows he should change his view. He moves the chairs. One of them has a loose leg. He detatches it, and a message appears above the bed.</b>
     </div>
   </div>
+
     <input id="text_input" type="text"/>
     <button id="next_button">Next</button>
     <button id="hint_button">hint</button>
-    <div id="res">Key: No beginning! No ending!</div>
     <script>
-      $('#hint_button').click(function(){
-        alert("Search how to view page source in you browser!");
+      $(document).ready(function(){
+        /**/
       });
+
       $('#next_button').click(function(){
-        $.post("page1sp",
+        $.post("page7ans",
         {
           result: $('#text_input').val()
         })
         .done(function(data){
+            alert("welcome to Room C!")
             window.location.replace(data);
         })
         .fail(function(data){
             alert("Let's try again!");
-        });
+        })
+      });
+      $('#hint_button').click(function(){
+        alert("Listen, carefully!");
+        var i = 0;
+        while(i < 10){
+          setTimeout(function(){
+            $.post("page7p")
+            .done(function(data){})
+          }, 10000);
+          i++;
+        }
       });
     </script>
 
