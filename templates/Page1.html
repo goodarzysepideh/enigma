@@ -2,17 +2,16 @@
 <!doctype html>
 <html>
 <head>
-    <title>Example Domain</title>
+    <title>Enigma</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <script src="jquery-3.3.1.min.js"></script>
+    <script src="../static/jquery-3.3.1.min.js"></script>
     <style>
     @font-face {
       font-family: 'digital';
-      src: url('digital-7.ttf');
+      src: url('../static/digital-7.ttf');
     }
     .center {
       display: block;
@@ -82,7 +81,7 @@
 </head>
 <body>
 <div>
-    <img src="firstPage.jpg" class="center"></img>
+    <img src="../static/firstPage.jpg" class="center"></img>
 </div>
     <input id="text_input" type="text"/>
     <button id="next_button">Next</button>
@@ -93,18 +92,15 @@
         alert("Search how to view page source in you browser!");
       });
       $('#next_button').click(function(){
-        $.post("localhost:5000/page1",
+        $.post("page1",
         {
-          result: $('#text_input').html()
-        },
-        function(data, status){
-          if (status == 'success') {
+          result: $('#text_input').val()
+        })
+        .done(function(data){
             window.location.replace(data);
-          }
-          else{
-            alert("try again!");
-          }
-          alert("Data: " + data + "\nStatus: " + status);
+        })
+        .fail(function(data){
+            alert("Let's try again!");
         });
       });
     </script>
