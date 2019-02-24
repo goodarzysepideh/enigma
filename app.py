@@ -77,12 +77,24 @@ def sendpacket():
 def parsans():
     print("look here:" , request.form['result'])
     if request.form['result'] == 'We are with you, right here, not right now!':
+        return 'dolls', status.HTTP_200_OK
+    else:
+        return 'alaki', status.HTTP_400_BAD_REQUEST
+
+@app.route('/dolls')
+def retrun_page8():
+    return render_template('page8.html')
+
+@app.route('/page8p', methods=['POST'])
+def reverseeng():
+    print("look here:" , request.form['result'])
+    if request.form['result'] == 'Grandpa':
         return 'continue', status.HTTP_200_OK
     else:
         return 'alaki', status.HTTP_400_BAD_REQUEST
 
 @app.route('/continue')
-def retrun_page8():
+def retrun_continue():
     return render_template('continue.html')
 
 if __name__ == "__main__":
