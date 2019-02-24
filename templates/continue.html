@@ -17,15 +17,33 @@
     body {
       background-color: black;
     }
+    .link{
+      margin:10px auto;
+      background-color: #aa8700;
+      border: none;
+      border-radius: 5px;
+      width: 200px;
+      line-height: 37px;
+      display: block;
+      font-size: 20px;
+  }
     </style>
   </head>
   <body>
     <div class="container">
-      <img src="../static/continue.png" alt="to be continued" width="40%">
+      <img src="../static/toBeContinued.jpg" alt="to be continued" width="68%">
       <!-- <a href="#"></a> -->
       <!-- <a href="enigma/templates/Page1.html">
 
       </a> -->
     </div>
+    <div class="container">
+      <button class="link">Return to Start</button>
+    </div>
+    <script>
+    $('.link').click(function(){
+        window.location.replace("/");
+    });
+    </script>
   </body>
 </html>

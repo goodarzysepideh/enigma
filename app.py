@@ -71,19 +71,19 @@ def retrun_page7():
 @app.route('/page7p', methods=['POST'])
 def sendpacket():
     print("look here!")
-    return 'We are with you right here, not right now!', status.HTTP_200_OK
+    return 'We are with you, right here, not right now!', status.HTTP_200_OK
 
 @app.route('/page7ans', methods=['POST'])
 def parsans():
     print("look here:" , request.form['result'])
     if request.form['result'] == 'We are with you, right here, not right now!':
-        return 'page8', status.HTTP_200_OK
+        return 'continue', status.HTTP_200_OK
     else:
         return 'alaki', status.HTTP_400_BAD_REQUEST
 
-@app.route('/page8')
+@app.route('/continue')
 def retrun_page8():
-    return render_template('page8.html')
+    return render_template('continue.html')
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000 , debug=True)
