@@ -2,29 +2,32 @@
 <!doctype html>
 <html>
 <head>
-    <title>Enigma</title>
+    <title>Example Domain</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="../static/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="jquery-3.3.1.min.js"></script>
     <style>
     @font-face {
       font-family: 'digital';
-      src: url('../static/digital-7.ttf');
+      src: url('digital-7.ttf');
     }
     .center {
       display: block;
       margin-left: auto;
       margin-right: auto;
       width: 100%;
-      height: 660px;
+      height: max-content;
+      /* height: 100%; */
     }
 
     body {
         background-color: #f0f0f2;
         margin: 0;
         padding: 0;
+        height: 100%;
     }
 
     #text_input{
@@ -77,6 +80,7 @@
     #res{
       display: none;
     }
+
     .container {
   position: relative;
   text-align: center;
@@ -85,22 +89,95 @@
 
 .top-center {
   position: absolute;
-  top: 5%;
-  right: 45%;
+  top: 1%;
+  right: 2%;
   font-family: Courier;
   font-size: 26px;
   text-align: center;
 }
+
+.grandpa {
+  position: absolute;
+  top: 8%;
+  left: 35%;
+  /* right: 15%; */
+  font-family: Courier;
+  font-size: 20px;
+  text-align: center;
+}
+
+.dad {
+  position: absolute;
+  top: 20%;
+  /* left: 35%; */
+  right: 25%;
+  font-family: Courier;
+  font-size: 20px;
+  text-align: center;
+}
+
+.top-left {
+  position: absolute;
+  top: 15%;
+  right: 50%;
+  font-family: Courier;
+  font-size: 26px;
+  text-align: center;
+}
+
+.mom {
+  position: absolute;
+  top: 15%;
+  /* left: 35%; */
+  right: 25%;
+  font-family: Courier;
+  font-size: 20px;
+  text-align: center;
+}
+
+.middle-right {
+  position: absolute;
+  top: 35%;
+  right: 30%;
+  /* left: 50%; */
+  font-family: Courier;
+  font-size: 26px;
+  text-align: center;
+}
+
     </style>
 </head>
 <body>
-  <div class="container">
-    <img src="../static/firstPage.jpg" class="center" style="width:100%;" alt="old house"></img>
-    <div class="top-center" style="color: white;">
-      Hunter family have been <span style="color: red;"><b>disappeared</b></span> for 3 years. <br> Nobody knows where they are. <br>
-      Whoever has looked for them has disappeared too, <br> because they couldn’t solve the <span style="font-family: digital; font-size: 36px;">enigma</span>.
+<div class="container">
+  <img src="../static/poltergeistFamily2.jpg" class="center" style="width:100%;" alt="scared family"></img>
+  <div class="top-center" style="color: black;" id="grandpaDialogue">
+    <img src="../static/SpeechBubble.png" width="50%">
+    <div class="grandpa">
+      <p>
+        where did we <br> go astray?
+      </p>
     </div>
   </div>
+
+  <div class="top-left" style="color: black;" id="dadDialogue">
+    <img src="../static/leftBubble.png" width="55%">
+    <div class="dad">
+      <p>
+        all the way through!
+      </p>
+    </div>
+  </div>
+
+  <div class="middle-right" style="color: black;" id="momDialogue">
+    <img src="../static/leftBubble.png" width="55%">
+    <div class="mom">
+      <p>
+        why should my kids <br> pay the price?
+      </p>
+    </div>
+  </div>
+
+</div>
     <input id="text_input" type="text"/>
     <button id="next_button">Next</button>
     <button id="hint_button">hint</button>
@@ -110,15 +187,18 @@
         alert("Search how to view page source in you browser!");
       });
       $('#next_button').click(function(){
-        $.post("page1",
+        $.post("localhost:5000/page1",
         {
-          result: $('#text_input').val()
-        })
-        .done(function(data){
+          result: $('#text_input').html()
+        },
+        function(data, status){
+          if (status == 'success') {
             window.location.replace(data);
-        })
-        .fail(function(data){
-            alert("Let's try again!");
+          }
+          else{
+            alert("try again!");
+          }
+          alert("Data: " + data + "\nStatus: " + status);
         });
       });
     </script>
